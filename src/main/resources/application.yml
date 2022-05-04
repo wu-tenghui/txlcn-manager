@@ -1,0 +1,43 @@
+server:
+  port: 7970
+
+spring:
+  application:
+    name: txlcn-manager
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/tx-manager?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: root
+      maximum-pool-size: 1
+      minimum-idle: 1
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    open-in-view: false
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: redis
+    database: 0
+
+tx-lcn:
+  manager:
+    host: 0.0.0.0
+    port: 8070
+    admin-key: codingapi
+  logger:
+    enabled: true
+    driver-class-name: ${spring.datasource.hikari.driver-class-name}
+    jdbc-url: ${spring.datasource.hikari.jdbc-url}
+    username: ${spring.datasource.hikari.username}
+    password: ${spring.datasource.hikari.password}
+    maximum-pool-size: ${spring.datasource.hikari.maximum-pool-size}
+    min-idle: ${spring.datasource.hikari.minimum-idle}
+
+logging:
+  level:
+    com.codingapi.txlcn: INFO
